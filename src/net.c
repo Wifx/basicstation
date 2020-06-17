@@ -1434,9 +1434,9 @@ static int validateAuthToken (str_t s) {
         while( (c=*p++) != '\n' && c != 0 );
         if( p==s || c==0 )
             return 0;
-        if( p[1] == 0 )
+        if( p[0] == 0 )
             return 1;
-        s = p = p+1;  // next line
+        s = p;  // next line
     }
 }
 
