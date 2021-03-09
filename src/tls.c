@@ -191,9 +191,15 @@ static int _readCAs (mbedtls_x509_crt** pcas, const char* cafile, int len, const
         goto errexit;
     }
     if( len <= 0 ) {
+        mbedtls_x509_crt* current_ca = cas;
+        int i = 0;
         // Reuse buffer to print cert info before freeing
-        mbedtls_x509_crt_info( (char*)certb, certl, "", cas );
-        LOG(INFO,"%s: \n%s", cafile, certb);
+        while (current_ca != NULL) {
+            mbedtls_x509_crt_info( (char*)certb, certl, "", current_ca );
+            LOG(MOD_AIO|VERBOSE,"%s[%d]: \n%s", cafile, i, certb);
+            current_ca = current_ca->next;
+            i++;
+        }
         rt_free(certb);
     }
 
