@@ -67,7 +67,7 @@ struct datetime {
 #define USTIME_MAX ((ustime_t)0x7FFFffffFFFFffff)
 
 
-typedef u2_t doff_t;
+typedef u4_t doff_t;
 enum { MAX_DOFF = 0xFFFFFFFF };
 typedef struct dbuf {
     char*  buf;
