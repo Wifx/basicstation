@@ -196,10 +196,11 @@ static int _readCAs (mbedtls_x509_crt** pcas, const char* cafile, int len, const
         // Reuse buffer to print cert info before freeing
         while (current_ca != NULL) {
             mbedtls_x509_crt_info( (char*)certb, certl, "", current_ca );
-            LOG(MOD_AIO|VERBOSE,"%s[%d]: \n%s", cafile, i, certb);
+            LOG(MOD_AIO|DEBUG,"%s[%d]: \n%s", cafile, i, certb);
             current_ca = current_ca->next;
             i++;
         }
+        LOG(MOD_AIO|VERBOSE,"%d certificates (%s) have been loaded from '%s'", i, what, cafile);
         rt_free(certb);
     }
 
